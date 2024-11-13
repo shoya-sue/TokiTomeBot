@@ -20,36 +20,18 @@ const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Botの動作
-bot.onText(/\/start/, (msg) => {
-    const chatId = msg.chat.id;
-
-    bot.sendMessage(chatId, "ミニアプリを起動するには以下のボタンをクリックしてください：", {
-        reply_markup: {
-            inline_keyboard: [
-                [
-                    {
-                        text: "▶️ ミニアプリを起動",
-                        web_app: { url: WEB_APP_URL }
-                    }
-                ]
-            ]
-        }
-    });
-});
-
 // /playコマンドを処理
 bot.onText(/\/play/, (msg) => {
     const chatId = msg.chat.id;
 
     // Web Appを起動するボタンを送信
-    bot.sendMessage(chatId, "以下のボタンをクリックしてWeb Appを起動してください：", {
+    bot.sendMessage(chatId, "Web App lunch", {
         reply_markup: {
             inline_keyboard: [
                 [
                     {
-                        text: "▶️ Web Appを起動",
-                        url: "https://t.me/TokiTomedevBot/TokiTome" // 指定されたURL
+                        text: "▶️ Web App Start",
+                        url: WEB_APP_LUNCH_URL
                     }
                 ]
             ]
