@@ -38,6 +38,25 @@ bot.onText(/\/start/, (msg) => {
     });
 });
 
+// /playコマンドを処理
+bot.onText(/\/play/, (msg) => {
+    const chatId = msg.chat.id;
+
+    // Web Appを起動するボタンを送信
+    bot.sendMessage(chatId, "以下のボタンをクリックしてWeb Appを起動してください：", {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {
+                        text: "▶️ Web Appを起動",
+                        url: "https://t.me/TokiTomedevBot/TokiTome" // 指定されたURL
+                    }
+                ]
+            ]
+        }
+    });
+});
+
 // ルートエンドポイント
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
